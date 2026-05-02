@@ -2,6 +2,12 @@
 
 A FiveM CarPlay style in vehicle music system with synced playback, queue handling, and persistent playlists.
 
+## Preview
+<p align="center">
+  <img width="48%" alt="image" src="https://github.com/user-attachments/assets/bb8c09fe-d6e5-4e3c-823b-132bb46d02a3" />
+  <img width="48%" alt="image" src="https://github.com/user-attachments/assets/f1cf7fab-a09f-476b-9027-0d779b182cf3" />  
+</p>
+
 ## Features
 
 - In-vehicle CarPlay UI (NUI) with now playing, queue, and playlist tabs.
