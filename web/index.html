@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarPlay</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+    <div id="maincontainer" class="main-container" style="display: none;">
+        <div class="glass-panel">
+            <header class="ui-header">
+                <div class="header-left">
+                    <h1>CarPlay</h1>
+                </div>
+                <button id="close-btn" class="close-btn"><i class="fas fa-times"></i></button>
+            </header>
+
+            <main class="ui-content">
+                <!-- Now Playing -->
+                <section class="now-playing">
+                    <div class="album-art-container">
+                        <img id="musicthumbanil" src="placeholder.png" alt="Album Art">
+                    </div>
+                    <div class="song-info">
+                        <h2 id="songname">No media present</h2>
+                        <p id="author"></p>
+                        <button id="add-current-to-playlist" class="btn-atp-main" title="Add current song to playlist">
+                            <i class="fas fa-list-plus"></i> Add to Playlist
+                        </button>
+                    </div>
+                    
+                    <div class="playback-controls">
+                        <div class="progress-container">
+                            <div class="song-progress">
+                                <div class="song-progress-fill"></div>
+                            </div>
+                            <div class="time-info">
+                                <span class="current-time">0:00</span>
+                                <span class="song-length">0:00</span>
+                            </div>
+                        </div>
+
+                        <div class="control-buttons">
+                            <button class="btn-secondary" onclick="backSong();"><i class="fas fa-backward-step"></i></button>
+                            <button id="play-pause-btn" class="btn-primary"><i class="fas fa-play"></i></button>
+                            <button class="btn-secondary" onclick="nextSong();"><i class="fas fa-forward-step"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="volume-container">
+                        <i class="fas fa-volume-low"></i>
+                        <div class="volume-bar-bg">
+                            <div class="volume-bar-fill"></div>
+                        </div>
+                        <i class="fas fa-volume-high"></i>
+                    </div>
+                </section>
+
+                <!-- Tabs -->
+                <section class="right-panel">
+                    <div class="panel-tabs">
+                        <button class="tab-btn active" data-target="queue-tab">Queue</button>
+                        <button class="tab-btn" data-target="playlist-tab">Playlists</button>
+                    </div>
+
+                    <!-- Queue Tab -->
+                    <div id="queue-tab" class="tab-content active">
+                        <div class="queue-container">
+                            <ul class="song-list">
+                                <!-- Songs will be injected here -->
+                            </ul>
+                        </div>
+                        
+                        <div class="add-song">
+                            <form class="song-form">
+                                <input type="url" id="songid" class="song-input" placeholder="Paste YouTube Link..." required>
+                                <button type="submit" class="song-submit" id="myButton">
+                                    <i class="fas fa-play"></i> Play
+                                </button>
+                                <button type="button" id="add-to-playlist-direct" class="song-submit secondary" title="Add to Playlist">
+                                    <i class="fas fa-stream"></i> Add
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Playlists Tab -->
+                    <div id="playlist-tab" class="tab-content">
+                        <div class="playlist-header">
+                            <input type="text" id="share-code-input" placeholder="Import share code...">
+                            <button id="import-playlist-btn" class="import-btn"><i class="fas fa-file-import"></i> Import</button>
+                            <button id="create-playlist-btn" class="create-btn"><i class="fas fa-plus"></i> New</button>
+                        </div>
+
+                        <!-- Create Playlist Modal -->
+                        <div id="create-playlist-modal" class="create-modal" style="display:none;">
+                            <div class="create-modal-inner">
+                                <div class="create-modal-header">
+                                    <span><i class="fas fa-list-music"></i> New Playlist</span>
+                                    <button id="close-create-modal" class="modal-close-btn"><i class="fas fa-times"></i></button>
+                                </div>
+                                <div class="create-modal-body">
+                                    <input type="text" id="new-playlist-name" class="modal-input" placeholder="Playlist name..." maxlength="60">
+                                    <input type="url" id="new-playlist-first-song" class="modal-input" placeholder="First song URL (optional)...">
+                                </div>
+                                <div class="create-modal-footer">
+                                    <button id="confirm-create-playlist" class="confirm-btn"><i class="fas fa-check"></i> Create</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="playlist-container">
+                            <ul id="playlist-items" class="playlist-list">
+                                <!-- Playlists injected here -->
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+            </main>
+
+            <!-- Add to Playlist Modal -->
+            <div id="add-to-playlist-modal" class="atp-modal" style="display:none;">
+                <div class="atp-modal-inner">
+                    <div class="atp-modal-header">
+                        <span><i class="fas fa-list-music"></i> Add to Playlist</span>
+                        <button id="close-atp-modal" class="modal-close-btn"><i class="fas fa-times"></i></button>
+                    </div>
+                    <div class="atp-modal-body">
+                        <p id="atp-song-label" class="atp-song-label"></p>
+                        <ul id="atp-playlist-list" class="atp-playlist-list">
+                            <!-- Injected by JS -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
